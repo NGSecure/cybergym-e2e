@@ -1,0 +1,5 @@
+repo_to_patch = "igraph"
+immutable_files = [
+    "fuzzing",
+    "tests",
+]

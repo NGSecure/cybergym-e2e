@@ -1,0 +1,4 @@
+repo_to_patch = "harfbuzz"
+immutable_files = [
+    "test",
+]

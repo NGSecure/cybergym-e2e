@@ -1,0 +1,4 @@
+repo_to_patch = "hdf5"
+immutable_files = [
+    "test",
+]

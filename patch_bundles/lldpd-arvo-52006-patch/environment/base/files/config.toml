@@ -1,0 +1,4 @@
+repo_to_patch = "lldpd"
+immutable_files = [
+    "tests",
+]

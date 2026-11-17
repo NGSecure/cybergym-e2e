@@ -1,0 +1,5 @@
+repo_to_patch = "libplist"
+immutable_files = [
+    "fuzz",
+    "test",
+]

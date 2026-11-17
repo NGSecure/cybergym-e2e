@@ -1,0 +1,4 @@
+repo_to_patch = "wolfmqtt"
+immutable_files = [
+    "scripts/",
+]

@@ -1,0 +1,5 @@
+repo_to_patch = "gstreamer"
+immutable_files = [
+    "ci",
+    "tests",
+]

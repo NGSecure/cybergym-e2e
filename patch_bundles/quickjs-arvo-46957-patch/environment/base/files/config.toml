@@ -1,0 +1,4 @@
+repo_to_patch = "quickjs"
+immutable_files = [
+    "tests",
+]

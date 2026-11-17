@@ -1,0 +1,6 @@
+repo_to_patch = "zeek"
+immutable_files = [
+    "ci",
+    "testing",
+    "src/fuzzers",
+]

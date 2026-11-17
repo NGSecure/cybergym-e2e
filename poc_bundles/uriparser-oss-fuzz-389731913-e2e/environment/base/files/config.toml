@@ -1,0 +1,5 @@
+repo_to_patch = "uriparser"
+immutable_files = [
+    "fuzz",
+    "test",
+]

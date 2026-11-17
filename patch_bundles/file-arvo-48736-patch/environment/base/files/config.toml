@@ -1,0 +1,5 @@
+repo_to_patch = "file"
+immutable_files = [
+    "fuzz",
+    "tests",
+]

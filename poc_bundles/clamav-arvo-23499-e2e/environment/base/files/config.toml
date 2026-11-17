@@ -1,0 +1,5 @@
+repo_to_patch = "clamav-devel"
+immutable_files = [
+    "fuzz",
+    "unit_tests",
+]

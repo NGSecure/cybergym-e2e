@@ -1,0 +1,15 @@
+repo_to_patch = "libxml2"
+immutable_files = [
+    "runtest.c",
+    "runxmlconf.c",
+    "runsuite.c",
+    "testapi.c",
+    "testchar.c",
+    "testdict.c",
+    "testdso.c",
+    "testlimits.c",
+    "testparser.c",
+    "testrecurse.c",
+    "testModule.c",
+    "fuzz/",
+]

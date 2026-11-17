@@ -1,0 +1,4 @@
+repo_to_patch = "imagemagick"
+immutable_files = [
+    "tests",
+]

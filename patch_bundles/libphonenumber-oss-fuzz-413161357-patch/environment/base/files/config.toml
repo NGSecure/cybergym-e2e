@@ -1,0 +1,4 @@
+repo_to_patch = "libphonenumber"
+immutable_files = [
+    "resources/test",
+]

@@ -1,0 +1,4 @@
+repo_to_patch = "gpac"
+immutable_files = [
+    "testsuite",
+]

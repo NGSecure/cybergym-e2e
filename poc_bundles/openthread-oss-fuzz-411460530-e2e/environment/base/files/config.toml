@@ -1,0 +1,4 @@
+repo_to_patch = "openthread"
+immutable_files = [
+    "tests",
+]

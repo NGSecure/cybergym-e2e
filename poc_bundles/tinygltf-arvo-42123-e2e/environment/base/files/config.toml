@@ -1,0 +1,5 @@
+repo_to_patch = "tinygltf"
+immutable_files = [
+    "tests",
+    "test_runner.py",
+]

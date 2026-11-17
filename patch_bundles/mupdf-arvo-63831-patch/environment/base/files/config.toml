@@ -1,0 +1,4 @@
+repo_to_patch = "mupdf"
+immutable_files = [
+    "source/tests",
+]

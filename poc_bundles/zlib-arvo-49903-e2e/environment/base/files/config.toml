@@ -1,0 +1,4 @@
+repo_to_patch = "zlib"
+immutable_files = [
+    "test",
+]
