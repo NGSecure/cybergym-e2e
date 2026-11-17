@@ -1,0 +1,41 @@
+version = "1.0"
+
+[task]
+name = "nwrc/@@TASK_NAME@@"
+description = @@DESCRIPTION@@
+keywords = [@@KEYWORDS@@]
+
+[metadata]
+benchmark = "cybergym-e2e"
+mode = "@@MODE@@"
+upstream_task = "@@UPSTREAM_TASK@@"
+upstream_task_id = "@@UPSTREAM_TASK_ID@@"
+source = "@@SOURCE@@"
+project = "@@PROJECT@@"
+language = "@@LANGUAGE@@"
+sanitizer = "@@SANITIZER@@"
+fuzz_target = "@@FUZZ_TARGET@@"
+difficulty = "@@DIFFICULTY@@"
+category = "security"
+data_notes = [@@DATA_NOTES@@]
+upstream_commit = "@@UPSTREAM_COMMIT@@"
+hf_revision = "@@HF_REV@@"
+version_tag = "@@VERSION_TAG@@"
+
+[verifier]
+# The judge recompiles the project for every stage it runs (e2e: up to four builds plus the
+# project's test suite; patch-only: two builds plus the test suite). Calibrate from the pilots.
+timeout_sec = @@VERIFIER_TIMEOUT@@
+
+[agent]
+# Upstream default (scripts/run_agent.py DEFAULT_TIMEOUT = 5400).
+timeout_sec = @@AGENT_TIMEOUT@@
+
+[environment]
+# Two images: agent sandbox (main) and judge (task-server). Local tags for local runs;
+# push.sh backfills the SWR addresses.
+docker_image = "@@MAIN_TAG@@"
+task_server_image = "@@TS_TAG@@"
+build_timeout_sec = @@BUILD_TIMEOUT@@
+cpus = @@CPUS@@
+memory_mb = @@MEMORY_MB@@

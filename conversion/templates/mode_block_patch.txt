@@ -1,0 +1,6 @@
+
+# patch-only: upstream puts @@PATCH_FILES_DESC@@ into /src before the /src_backup snapshot,
+# and the ground-truth PoC at /data/poc.bin (setup_workspace, mode "patch-only").
+COPY @@PATCH_FILES@@ /src/
+COPY @@PATCH_FILES@@ /src_backup/
+COPY data/poc.bin /data/poc.bin
