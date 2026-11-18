@@ -1,0 +1,5 @@
+repo_to_patch = "MapServer"
+immutable_files = [
+    "tests",
+    "fuzzers",
+]

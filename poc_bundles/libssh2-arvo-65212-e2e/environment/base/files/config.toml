@@ -1,0 +1,4 @@
+repo_to_patch = "libssh2"
+immutable_files = [
+    "tests/",
+]

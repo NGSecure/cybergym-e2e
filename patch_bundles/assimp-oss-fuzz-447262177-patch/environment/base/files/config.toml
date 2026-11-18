@@ -1,0 +1,4 @@
+repo_to_patch = "assimp"
+immutable_files = [
+    "test",
+]

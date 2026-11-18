@@ -1,0 +1,4 @@
+repo_to_patch = "opensc"
+immutable_files = [
+    "tests",
+]

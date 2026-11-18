@@ -1,0 +1,5 @@
+repo_to_patch = "libxslt"
+immutable_files = [
+    "tests",
+    "python/tests",
+]

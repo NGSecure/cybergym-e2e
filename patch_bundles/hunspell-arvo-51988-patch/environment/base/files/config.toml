@@ -1,0 +1,5 @@
+repo_to_patch = "hunspell"
+immutable_files = [
+    "tests/",
+    "oss-fuzz-build.sh",
+]

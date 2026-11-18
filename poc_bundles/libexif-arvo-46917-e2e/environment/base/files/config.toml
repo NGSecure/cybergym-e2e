@@ -1,0 +1,4 @@
+repo_to_patch = "libexif"
+immutable_files = [
+    "test",
+]

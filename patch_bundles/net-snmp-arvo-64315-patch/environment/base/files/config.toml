@@ -1,0 +1,4 @@
+repo_to_patch = "net-snmp"
+immutable_files = [
+    "testing",
+]

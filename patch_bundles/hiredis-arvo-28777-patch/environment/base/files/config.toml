@@ -1,0 +1,6 @@
+repo_to_patch = "hiredis"
+immutable_files = [
+    "test.c",
+    "test.sh",
+    "fuzzing",
+]

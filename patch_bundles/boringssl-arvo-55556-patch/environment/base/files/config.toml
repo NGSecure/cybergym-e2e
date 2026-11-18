@@ -1,0 +1,7 @@
+repo_to_patch = "boringssl"
+immutable_files = [
+    "fuzz/",
+    "crypto/test/",
+    "ssl/test/",
+    "third_party/googletest/",
+]

@@ -1,0 +1,8 @@
+repo_to_patch = "selinux"
+immutable_files = [
+    "libsepol/fuzz",
+    "checkpolicy/test",
+    "libsemanage/tests",
+    "libsepol/tests",
+    "secilc/test",
+]
