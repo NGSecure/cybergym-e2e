@@ -81,6 +81,23 @@ def online_fetches(script_text):
 # Fixed per-repository salt: tokens stay stable across re-runs, so images need no rebuild.
 TOKEN_SALT = b"cge2e/9f4c1d7e2b"
 
+# Harbor installs the agent CLI inside the sandbox when a trial starts. For the Node-based
+# agents that goes through nvm, whose installer clones nvm from GitHub with git. Some upstream
+# prepare.sh scripts point git at an offline mirror for whole URL prefixes
+# (git config --global url.<mirror>.insteadOf <prefix>); a prefix that covers the nvm
+# repository makes that clone fail. Such a sandbox gets a one-prefix exemption
+# (templates/nvm_exempt_block.txt) and its image a tag of its own, so the corrected image never
+# hides behind an address that a registry or a sandbox node has already cached.
+NVM_PREFIX = "https://github.com/nvm-sh/"
+NVM_EXEMPT_TAG_SUFFIX = "-r1"
+GIT_REWRITE = re.compile(r"""\bgit\s+config\s+--global\s+(?:--\S+\s+)*url\.\S+\.insteadOf\s+["']?([^"'\s]+)""")
+
+
+def rewritten_prefixes(script_text):
+    """URL prefixes a script redirects with a global git insteadOf rule."""
+    return [m.group(1) for line in script_text.splitlines() if not line.lstrip().startswith("#")
+            for m in GIT_REWRITE.finditer(line)]
+
 
 def render(template, values):
     text = (TEMPLATES / template).read_text()
@@ -172,6 +189,11 @@ class Task:
         self.online = ", ".join(online)
         if online:
             self.notes.append("judge-time network fetch (%s), upstream validates online" % self.online)
+        prepare = (self.dir / "prepare.sh").read_text(errors="replace")
+        self.nvm_exempt = any(NVM_PREFIX.startswith(p) for p in rewritten_prefixes(prepare))
+        if self.nvm_exempt:
+            self.notes.append("sandbox git config keeps %s off prepare.sh's offline GitHub mirror, "
+                              "so Harbor can install the agent CLI" % NVM_PREFIX)
 
     def base_files(self):
         """Build-context files of the shared base image: name -> (bytes, mode)."""
@@ -213,7 +235,8 @@ def convert_task(task, modes, out, args, prompt):
         dataset, suffix, main_suffix = MODES[mode]
         bundle_name = "%s-%s" % (task.slug, suffix)
         bdir = out / dataset / bundle_name
-        main_tag = "cge2e_%s_main_%s:%s" % (task.key, main_suffix, ver)
+        main_tag = "cge2e_%s_main_%s:%s%s" % (task.key, main_suffix, ver,
+                                              NVM_EXEMPT_TAG_SUFFIX if task.nvm_exempt else "")
         values = {
             "BUNDLE": bundle_name,
             "BUNDLE_DIR": "%s/%s" % (dataset, bundle_name),
@@ -240,6 +263,8 @@ def convert_task(task, modes, out, args, prompt):
                 "PATCH_FILES_DESC": "crash.log and poc.bin" if has_log
                 else "poc.bin (this task has no crash.log upstream)",
             })
+        if task.nvm_exempt:
+            mode_block += (TEMPLATES / "nvm_exempt_block.txt").read_text()
         write(env / "Dockerfile", render("main.Dockerfile", dict(values, MODE_BLOCK=mode_block)))
         write(env / ".dockerignore", "base/\ntask-server/\n")
         write(env / "docker-compose.yaml", render("docker-compose.yaml", dict(

@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task opensc/oss-fuzz_448717172, mode e2e):
 #   base         cge2e_ad4a226510_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_ad4a226510_main_e2e:v0.0.1   agent sandbox
+#   main         cge2e_ad4a226510_main_e2e:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_ad4a226510_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="e2e"
 REPO_TO_PATCH="opensc"
 BASE_TAG="cge2e_ad4a226510_base:v0.0.1"
 BASE_DIGEST="dabd188d8083bd51"
-MAIN_TAG="cge2e_ad4a226510_main_e2e:v0.0.1"
+MAIN_TAG="cge2e_ad4a226510_main_e2e:v0.0.1-r1"
 TS_TAG="cge2e_ad4a226510_ts:v0.0.1"
 AUTH_TOKEN="142ed28bb3c6782957842c29ebae791d"
 SIZES="crash.log=3393 poc.bin=853 src.tgz=2070719"

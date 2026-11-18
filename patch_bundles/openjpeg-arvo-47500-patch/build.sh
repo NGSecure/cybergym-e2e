@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task openjpeg/arvo_47500, mode patch-only):
 #   base         cge2e_459b76bde1_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_459b76bde1_main_patch:v0.0.1   agent sandbox
+#   main         cge2e_459b76bde1_main_patch:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_459b76bde1_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="patch-only"
 REPO_TO_PATCH="openjpeg"
 BASE_TAG="cge2e_459b76bde1_base:v0.0.1"
 BASE_DIGEST="661045de5935f9b1"
-MAIN_TAG="cge2e_459b76bde1_main_patch:v0.0.1"
+MAIN_TAG="cge2e_459b76bde1_main_patch:v0.0.1-r1"
 TS_TAG="cge2e_459b76bde1_ts:v0.0.1"
 AUTH_TOKEN="8452a451c0d10efdca5349f83941b147"
 SIZES="crash.log=5220 poc.bin=1479 src.tgz=886275163"

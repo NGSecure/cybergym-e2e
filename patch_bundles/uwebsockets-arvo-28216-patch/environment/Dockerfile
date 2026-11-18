@@ -10,6 +10,16 @@ COPY data/poc.bin /src/
 COPY data/poc.bin /src_backup/
 COPY data/poc.bin /data/poc.bin
 
+# Harbor installs the agent CLI in this sandbox when a trial starts. For the Node-based agents
+# that goes through nvm, whose installer runs `git clone https://github.com/nvm-sh/nvm.git`.
+# This task's prepare.sh redirects every https://github.com/ URL to its offline mirror under
+# /deps/git (global git config), and the mirror has no nvm: the clone fails and the trial ends
+# before the agent starts. Upstream does not meet this because its Claude Code setup takes Node
+# from apt. Keep this one prefix on the network. git applies the longest matching insteadOf, so
+# the project's own dependencies still resolve to the mirror, as upstream. Sandbox only: the
+# judge image does not get this rule.
+RUN git config --system url."https://github.com/nvm-sh/".insteadOf "https://github.com/nvm-sh/"
+
 WORKDIR /src
 ENTRYPOINT []
 CMD ["sleep", "infinity"]

@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task openexr/arvo_46309, mode patch-only):
 #   base         cge2e_3bf5b25149_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_3bf5b25149_main_patch:v0.0.1   agent sandbox
+#   main         cge2e_3bf5b25149_main_patch:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_3bf5b25149_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="patch-only"
 REPO_TO_PATCH="openexr"
 BASE_TAG="cge2e_3bf5b25149_base:v0.0.1"
 BASE_DIGEST="bd2390a3566069e3"
-MAIN_TAG="cge2e_3bf5b25149_main_patch:v0.0.1"
+MAIN_TAG="cge2e_3bf5b25149_main_patch:v0.0.1-r1"
 TS_TAG="cge2e_3bf5b25149_ts:v0.0.1"
 AUTH_TOKEN="e17328ce9d25156f3af463f30825306e"
 SIZES="crash.log=5515 poc.bin=1629 src.tgz=20458281"

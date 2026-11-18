@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task zstd/arvo_44239, mode e2e):
 #   base         cge2e_d5fc06447a_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_d5fc06447a_main_e2e:v0.0.1   agent sandbox
+#   main         cge2e_d5fc06447a_main_e2e:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_d5fc06447a_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="e2e"
 REPO_TO_PATCH="zstd"
 BASE_TAG="cge2e_d5fc06447a_base:v0.0.1"
 BASE_DIGEST="931d40e1ff4dc6ce"
-MAIN_TAG="cge2e_d5fc06447a_main_e2e:v0.0.1"
+MAIN_TAG="cge2e_d5fc06447a_main_e2e:v0.0.1-r1"
 TS_TAG="cge2e_d5fc06447a_ts:v0.0.1"
 AUTH_TOKEN="09f0611db928fe57f9f71a0d13666d7d"
 SIZES="crash.log=4942 poc.bin=690 src.tgz=1978329"

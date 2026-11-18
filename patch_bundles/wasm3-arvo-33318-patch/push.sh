@@ -23,7 +23,7 @@ REGISTRY=swr-coder-data-platform-wce1sr.swr-pro.myhuaweicloud.com/swesandbox
 LINE=default
 USER=platform
 POOL_ID=1
-MAIN_TAG="cge2e_b2d32e02e7_main_patch:v0.0.1"
+MAIN_TAG="cge2e_b2d32e02e7_main_patch:v0.0.1-r1"
 TS_TAG="cge2e_b2d32e02e7_ts:v0.0.1"
 
 # build.sh must have run (on the public network) — the images are local.

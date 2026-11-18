@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task binutils/arvo_40465, mode patch-only):
 #   base         cge2e_539ef37c63_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_539ef37c63_main_patch:v0.0.1   agent sandbox
+#   main         cge2e_539ef37c63_main_patch:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_539ef37c63_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="patch-only"
 REPO_TO_PATCH="binutils-gdb"
 BASE_TAG="cge2e_539ef37c63_base:v0.0.1"
 BASE_DIGEST="273a44d5d0f38a33"
-MAIN_TAG="cge2e_539ef37c63_main_patch:v0.0.1"
+MAIN_TAG="cge2e_539ef37c63_main_patch:v0.0.1-r1"
 TS_TAG="cge2e_539ef37c63_ts:v0.0.1"
 AUTH_TOKEN="e10d5d91e9c420f01f357755385e9129"
 SIZES="crash.log=3324 poc.bin=6 src.tgz=59347021"

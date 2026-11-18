@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task uriparser/oss-fuzz_389731913, mode e2e):
 #   base         cge2e_4a37715a6a_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_4a37715a6a_main_e2e:v0.0.1   agent sandbox
+#   main         cge2e_4a37715a6a_main_e2e:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_4a37715a6a_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="e2e"
 REPO_TO_PATCH="uriparser"
 BASE_TAG="cge2e_4a37715a6a_base:v0.0.1"
 BASE_DIGEST="af69c1da73a97261"
-MAIN_TAG="cge2e_4a37715a6a_main_e2e:v0.0.1"
+MAIN_TAG="cge2e_4a37715a6a_main_e2e:v0.0.1-r1"
 TS_TAG="cge2e_4a37715a6a_ts:v0.0.1"
 AUTH_TOKEN="be9bce85c582cc6188b5953975e58634"
 SIZES="crash.log=1841 poc.bin=45498 src.tgz=10643746"

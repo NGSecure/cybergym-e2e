@@ -4,7 +4,7 @@
 # Builds the images of this bundle (upstream task libwebp/oss-fuzz_382816119, mode e2e):
 #   base         cge2e_d2f730bab7_base:v0.0.1   upstream build image + setup_workspace + prepare.sh;
 #                shared with this task's other-mode bundle, reused while its digest label matches
-#   main         cge2e_d2f730bab7_main_e2e:v0.0.1   agent sandbox
+#   main         cge2e_d2f730bab7_main_e2e:v0.0.1-r1   agent sandbox
 #   task-server  cge2e_d2f730bab7_ts:v0.0.1   judge, shared with this task's other-mode bundle
 # then self-checks them: a leak scan of the sandbox, an oracle run (solve.sh + tests/test.sh
 # must give reward 1.0, i.e. upstream's dataset validation) and a noop run (test.sh alone: 0.0).
@@ -32,7 +32,7 @@ MODE="e2e"
 REPO_TO_PATCH="libwebp"
 BASE_TAG="cge2e_d2f730bab7_base:v0.0.1"
 BASE_DIGEST="9dd1f421a26c96bf"
-MAIN_TAG="cge2e_d2f730bab7_main_e2e:v0.0.1"
+MAIN_TAG="cge2e_d2f730bab7_main_e2e:v0.0.1-r1"
 TS_TAG="cge2e_d2f730bab7_ts:v0.0.1"
 AUTH_TOKEN="94510467f0f0f3cbc0d32ad904c01178"
 SIZES="crash.log=22611 poc.bin=58 src.tgz=366476744"

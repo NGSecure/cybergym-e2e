@@ -84,6 +84,13 @@ done
 | 智能体启动时在容器内执行 setup_workspace 与 prepare.sh | 在构建 base 镜像时逐步执行同样的步骤 | 运行时沙箱无需联网，且智能体与评测方源码树完全一致 |
 | 每个验证阶段使用一个新容器 | 同一 task-server 内顺序执行，每阶段前恢复 `/src`、`/out`、`/work`、清理 `/tmp` 新增文件与残留进程 | 新平台每题只有一个评测容器 |
 | 阶段顺序 1→2→3→4 | e2e 为 1→2→4→3，patch-only 为 4→3 | `test.sh` 可能安装系统软件包，放到最后避免影响其他阶段；各阶段的判定与依赖关系不变 |
+| 45 道题的 `prepare.sh` 用全局 git 规则把所有 `https://github.com/` 地址改写到离线镜像 `/deps/git/` | 这些题的沙箱镜像多一条系统级规则，让 `https://github.com/nvm-sh/` 前缀保持原样；base 与 task-server 镜像不变 | 新平台在沙箱内用 nvm 安装智能体 CLI，安装脚本要 `git clone https://github.com/nvm-sh/nvm.git`，否则会被改写到不存在的本地路径而失败。上游用 apt 安装 Node，不经过 git。git 按最长前缀匹配，项目自身的依赖仍走离线镜像 |
+
+带这条规则的沙箱可以离线检查：下面的命令应原样输出该地址，而不是 `file:///deps/git/...`。
+
+```bash
+docker run --rm --network none <沙箱镜像> git ls-remote --get-url https://github.com/nvm-sh/nvm.git
+```
 
 ## 当前状态
 
@@ -98,7 +105,7 @@ done
 
 对全部 bundle 做过的静态校验（均通过）：文件集合完整；任务名、镜像标签、评测令牌按题唯一且在各文件间一致；`task.toml` 可解析；生成的 7,360 个脚本与上游的 1,418 个不同脚本通过 `bash -n`；`solve.sh` 内嵌补丁与上游 `patch.diff` 逐字节相同；bundle 内没有任何门控数据文件；上游 509 个构建镜像全部仍可拉取。
 
-**尚未做的事：除下面 2 道样例题外，其余 918 道题没有实际构建过。** 是否可用以每个 bundle 的 `build.sh` 自检为准（泄露扫描、oracle 必须 1.0、空提交必须 0.0，任一不满足即以非零状态退出）。
+**尚未做的事：除 50 道样例题（见“平台试跑”）外，其余 870 道题没有实际构建过。** 是否可用以每个 bundle 的 `build.sh` 自检为准（泄露扫描、oracle 必须 1.0、空提交必须 0.0，任一不满足即以非零状态退出）。
 
 需要留意的题目（`task.toml` 的 `data_notes` 与报告的 `notes` 列中有标注）：
 
@@ -107,6 +114,22 @@ done
 | 评测时脚本仍会联网（报告列 `judge_online_fetch`，按命令特征识别，带离线回退的也会列出） | 18 道题 | 上游评测容器可联网；若平台的评测容器不能联网，这些题的 S3（3 道 botan 题为编译）可能失败。其余题目的评测脚本中未发现联网命令：上游已把 `test.sh` 的依赖改为在 `prepare.sh` 中预下载 |
 | 上游没有 `crash.log` | 6 道题 | patch-only 模式下智能体只拿到 `poc.bin`；题面沿用上游原文，仍会提到 `/src/crash.log` |
 | ground-truth `poc.bin` 为空文件 | 4 道题 | 与上游一致；e2e 的泄露扫描对空文件跳过内容比对 |
+| 沙箱带 nvm 豁免规则（见“与上游的差异”） | 45 道题 | 沙箱镜像标签为 `v0.0.1-r1`，以免与修复前已推送的同名镜像混淆；base 与 task-server 仍为 `v0.0.1`。只关系到智能体 CLI 能否安装，不影响编译、测试与评测 |
+
+### 平台试跑（2026-11-18）
+
+从全量中抽取的 50 道样例题（两种模式共 100 个 bundle）已构建、推送，并在新平台上用 Claude Code 跑过一轮。
+
+| | 得 1.0 | 智能体未能安装 |
+|---|---|---|
+| poc_bundles（e2e） | 45 | 5 |
+| patch_bundles（patch-only） | 45 | 5 |
+
+未能安装的是同样的 5 道题：`irssi/arvo_31491`、`mruby/arvo_18756`、`libarchive/oss-fuzz_42536661`、`libultrahdr/oss-fuzz_42535447`、`libwebp/oss-fuzz_438295348`。原因即上文的 git 改写规则：平台安装器的 `git clone https://github.com/nvm-sh/nvm.git` 被改写到 `/deps/git/github.com/nvm-sh/nvm.git`，Node 没有装上，试跑在智能体启动之前结束。50 道样例题中带这条规则的恰好是这 5 道。
+
+修复（沙箱加豁免规则）已在两个真实构建镜像上用平台的安装命令验证：`cybergym/oss-fuzz:42535447-fix`（Ubuntu 20.04，git 2.25.1）与默认的 `base-builder`（Ubuntu 24.04，git 2.43.0）。修复前复现出同样的报错，修复后安装成功，项目依赖仍从离线镜像解析。**修复后的 bundle 尚未在平台上重跑。**
+
+e2e 的 45 个满分中有 15 个 `gt_success` 为 false：智能体自己的 PoC 与补丁满足 S1 至 S3，但补丁没有挡住 ground-truth PoC，即修复的是另一个缺陷。按上游规则这仍计 1.0。
 
 ### 样例实测（2026-11-16）
 
