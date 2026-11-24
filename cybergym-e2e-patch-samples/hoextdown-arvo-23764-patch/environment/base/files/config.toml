@@ -1,0 +1,4 @@
+repo_to_patch = "hoextdown"
+immutable_files = [
+    "test",
+]
