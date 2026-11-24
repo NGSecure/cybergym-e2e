@@ -1,0 +1,5 @@
+repo_to_patch = "haproxy"
+immutable_files = [
+    "reg-tests",
+    "tests",
+]

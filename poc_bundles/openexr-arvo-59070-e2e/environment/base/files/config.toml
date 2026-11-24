@@ -1,0 +1,5 @@
+repo_to_patch = "openexr"
+immutable_files = [
+    "src/test/",
+    "src/test/OpenEXRFuzzTest/",
+]

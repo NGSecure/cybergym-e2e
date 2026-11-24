@@ -1,0 +1,5 @@
+repo_to_patch = "libheif"
+immutable_files = [
+    "tests",
+    "fuzzing",
+]

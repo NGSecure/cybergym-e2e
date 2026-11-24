@@ -1,0 +1,4 @@
+repo_to_patch = "radare2"
+immutable_files = [
+    "test",
+]

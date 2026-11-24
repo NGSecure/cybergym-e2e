@@ -1,0 +1,4 @@
+repo_to_patch = "jq"
+immutable_files = [
+    "tests",
+]

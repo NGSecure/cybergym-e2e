@@ -1,0 +1,6 @@
+repo_to_patch = "jsoncpp"
+immutable_files = [
+    "test",
+    "src/test_lib_json",
+    "src/jsontestrunner",
+]

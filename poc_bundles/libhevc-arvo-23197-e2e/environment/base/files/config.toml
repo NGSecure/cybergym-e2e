@@ -1,0 +1,5 @@
+repo_to_patch = "libhevc"
+immutable_files = [
+    "fuzzer",
+    "test",
+]

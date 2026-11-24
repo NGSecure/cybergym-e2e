@@ -1,0 +1,4 @@
+repo_to_patch = "libjxl"
+immutable_files = [
+    "testdata",
+]

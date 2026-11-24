@@ -1,0 +1,5 @@
+repo_to_patch = "ntopng"
+immutable_files = [
+    "fuzz",
+    "tests",
+]
