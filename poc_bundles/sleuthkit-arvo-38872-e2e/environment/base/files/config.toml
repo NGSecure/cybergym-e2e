@@ -1,0 +1,5 @@
+repo_to_patch = "sleuthkit"
+immutable_files = [
+    "unit_tests",
+    "tests",
+]

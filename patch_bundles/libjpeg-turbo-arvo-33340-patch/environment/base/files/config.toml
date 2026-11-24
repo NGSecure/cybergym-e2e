@@ -1,0 +1,5 @@
+repo_to_patch = "libjpeg-turbo"
+immutable_files = [
+    "fuzz",
+    "testimages",
+]

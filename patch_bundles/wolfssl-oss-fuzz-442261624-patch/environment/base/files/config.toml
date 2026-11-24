@@ -1,0 +1,5 @@
+repo_to_patch = "wolfssl"
+immutable_files = [
+    "tests",
+    "testsuite",
+]

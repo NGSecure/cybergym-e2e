@@ -1,0 +1,6 @@
+repo_to_patch = "gpsd"
+immutable_files = [
+    "tests",
+    "test",
+    "fuzzer",
+]

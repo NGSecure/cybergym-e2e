@@ -1,0 +1,5 @@
+repo_to_patch = "uWebSockets"
+immutable_files = [
+    "tests/",
+    "fuzzing/",
+]

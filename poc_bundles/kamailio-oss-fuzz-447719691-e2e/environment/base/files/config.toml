@@ -1,0 +1,5 @@
+repo_to_patch = "kamailio"
+immutable_files = [
+    "test",
+    "misc/fuzz",
+]

@@ -1,0 +1,4 @@
+repo_to_patch = "yara"
+immutable_files = [
+    "tests",
+]

@@ -1,0 +1,5 @@
+repo_to_patch = "exiv2"
+immutable_files = [
+    "tests",
+    "unitTests",
+]

@@ -1,0 +1,5 @@
+repo_to_patch = "swift-protobuf"
+immutable_files = [
+    "Tests",
+    "FuzzTesting",
+]

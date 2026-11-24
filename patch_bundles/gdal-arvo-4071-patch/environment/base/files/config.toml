@@ -1,0 +1,8 @@
+repo_to_patch = "gdal"
+immutable_files = [
+    "fuzzers",
+    "app/multireadtest.cpp",
+    "app/test_ogrsf.cpp",
+    "app/testepsg.cpp",
+    "app/testreprojmulti.cpp",
+]

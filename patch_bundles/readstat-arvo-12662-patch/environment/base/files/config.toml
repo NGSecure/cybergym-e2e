@@ -1,0 +1,6 @@
+repo_to_patch = "readstat"
+immutable_files = [
+    "src/test",
+    "src/fuzz",
+    "fuzz",
+]

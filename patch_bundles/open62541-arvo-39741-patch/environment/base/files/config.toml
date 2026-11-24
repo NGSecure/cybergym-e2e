@@ -1,0 +1,4 @@
+repo_to_patch = "open62541"
+immutable_files = [
+    "tests",
+]

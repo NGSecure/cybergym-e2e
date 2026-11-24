@@ -1,0 +1,5 @@
+repo_to_patch = "oatpp"
+immutable_files = [
+    "fuzzers",
+    "test",
+]

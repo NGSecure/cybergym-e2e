@@ -1,0 +1,5 @@
+repo_to_patch = "skcms"
+immutable_files = [
+    "tests.c",
+    "fuzz",
+]

@@ -1,0 +1,5 @@
+repo_to_patch = "bind9"
+immutable_files = [
+    "tests",
+    "fuzz",
+]

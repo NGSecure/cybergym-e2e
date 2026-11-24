@@ -1,0 +1,5 @@
+repo_to_patch = "libidn2"
+immutable_files = [
+    "tests/",
+    "fuzz/",
+]

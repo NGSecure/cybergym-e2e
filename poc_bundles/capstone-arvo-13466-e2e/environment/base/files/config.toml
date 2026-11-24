@@ -1,0 +1,4 @@
+repo_to_patch = "capstonenext"
+immutable_files = [
+    "tests/",
+]

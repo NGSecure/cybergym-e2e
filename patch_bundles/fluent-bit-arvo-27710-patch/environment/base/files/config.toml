@@ -1,0 +1,4 @@
+repo_to_patch = "fluent-bit"
+immutable_files = [
+    "tests/",
+]
