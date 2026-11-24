@@ -1,0 +1,5 @@
+repo_to_patch = "json-c"
+immutable_files = [
+    "tests/",
+    "fuzz/",
+]

@@ -1,0 +1,5 @@
+repo_to_patch = "wt"
+immutable_files = [
+    "test",
+    "fuzz",
+]

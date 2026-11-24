@@ -1,0 +1,4 @@
+repo_to_patch = "hostap"
+immutable_files = [
+    "tests/",
+]

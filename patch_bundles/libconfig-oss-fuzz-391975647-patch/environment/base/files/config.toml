@@ -1,0 +1,7 @@
+repo_to_patch = "libconfig"
+immutable_files = [
+    "fuzz",
+    "tests",
+    "test.cfg",
+    "tinytest",
+]

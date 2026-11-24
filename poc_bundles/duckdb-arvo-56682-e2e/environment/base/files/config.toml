@@ -1,0 +1,4 @@
+repo_to_patch = "duckdb"
+immutable_files = [
+    "test",
+]

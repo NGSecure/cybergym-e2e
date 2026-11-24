@@ -1,0 +1,4 @@
+repo_to_patch = "zstd"
+immutable_files = [
+    "tests",
+]

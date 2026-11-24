@@ -1,0 +1,4 @@
+repo_to_patch = "miniz"
+immutable_files = [
+    "tests",
+]

@@ -1,0 +1,5 @@
+repo_to_patch = "tinysparql"
+immutable_files = [
+    "fuzzing",
+    "tests",
+]

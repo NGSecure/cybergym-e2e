@@ -1,0 +1,4 @@
+repo_to_patch = "h3"
+immutable_files = [
+    "tests",
+]

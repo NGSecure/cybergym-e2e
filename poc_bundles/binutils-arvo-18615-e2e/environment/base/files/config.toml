@@ -1,0 +1,4 @@
+repo_to_patch = "binutils-gdb"
+immutable_files = [
+    "binutils/testsuite",
+]

@@ -1,0 +1,4 @@
+repo_to_patch = "libwebsockets"
+immutable_files = [
+    "test-apps",
+]

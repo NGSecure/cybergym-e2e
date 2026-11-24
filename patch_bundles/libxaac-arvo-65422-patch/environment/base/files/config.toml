@@ -1,0 +1,5 @@
+repo_to_patch = "libxaac"
+immutable_files = [
+    "test",
+    "fuzzer",
+]

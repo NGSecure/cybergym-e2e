@@ -1,0 +1,4 @@
+repo_to_patch = "faad2"
+immutable_files = [
+    "fuzz",
+]

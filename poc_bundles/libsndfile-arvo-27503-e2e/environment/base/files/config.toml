@@ -1,0 +1,5 @@
+repo_to_patch = "libsndfile"
+immutable_files = [
+    "tests/",
+    "ossfuzz/",
+]

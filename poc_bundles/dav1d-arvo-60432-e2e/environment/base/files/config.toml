@@ -1,0 +1,4 @@
+repo_to_patch = "dav1d"
+immutable_files = [
+    "tests",
+]

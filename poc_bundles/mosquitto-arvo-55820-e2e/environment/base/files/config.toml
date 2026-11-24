@@ -1,0 +1,5 @@
+repo_to_patch = "mosquitto"
+immutable_files = [
+    "fuzzing",
+    "test",
+]

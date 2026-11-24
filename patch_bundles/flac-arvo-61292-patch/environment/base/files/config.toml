@@ -1,0 +1,5 @@
+repo_to_patch = "flac"
+immutable_files = [
+    "test",
+    "oss-fuzz",
+]

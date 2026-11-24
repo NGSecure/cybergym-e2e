@@ -1,0 +1,4 @@
+repo_to_patch = "mruby"
+immutable_files = [
+    "test",
+]

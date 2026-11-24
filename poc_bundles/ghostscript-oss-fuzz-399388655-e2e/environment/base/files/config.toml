@@ -1,0 +1,4 @@
+repo_to_patch = "ghostpdl"
+immutable_files = [
+    "fuzz",
+]

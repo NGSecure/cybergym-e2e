@@ -1,0 +1,4 @@
+repo_to_patch = "elfutils"
+immutable_files = [
+    "tests",
+]

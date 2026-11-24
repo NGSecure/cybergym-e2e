@@ -1,0 +1,5 @@
+repo_to_patch = "libvips"
+immutable_files = [
+    "test",
+    "fuzz",
+]

@@ -1,0 +1,10 @@
+# Upstream inputs (task definitions + gated Hugging Face data): local only, never committed.
+original/
+# Data that build.sh stages into build contexts, and self-check output.
+**/environment/base/data/
+**/environment/task-server/data/
+**/environment/data/
+**/.selfcheck/
+__pycache__/
+# Logs of a batch build loop (see README).
+build_logs/
